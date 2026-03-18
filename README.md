@@ -1,0 +1,1 @@
+# mip-praktiskais-darbs-1
