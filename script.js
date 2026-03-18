@@ -11,14 +11,14 @@ const gameContainer = document.getElementById('gameContainer');
 
 // 1. solis, izvēlēties kas sāk spēli
 document.getElementById("chooseHuman").addEventListener("click", () => {
-	game.selectStarter("human");
+	game.setStartingPlayer("human");
 	firstStepContainer.classList.add('hidden'); // aizver pirmo soli
 	secondStepContainer.classList.remove('hidden'); // atver otro soli
 	console.log('game started by human')
 });
 
 document.getElementById("chooseComputer").addEventListener("click", () => {
-	game.selectStarter("computer");
+	game.setStartingPlayer("computer");
 	firstStepContainer.classList.add('hidden'); // aizver pirmo soli
 	secondStepContainer.classList.remove('hidden'); // atver otro soli
 	console.log('game started by robot')
@@ -28,14 +28,14 @@ document.getElementById("chooseComputer").addEventListener("click", () => {
 
 // 2. solis, izvēlēties datora spēles algoritmu
 document.getElementById("chooseMinMax").addEventListener("click", () => {
-	game.selectAlgorithm("minmax");
+	game.setAlgorithm("minmax");
 	secondStepContainer.classList.add('hidden'); // aizver pirmo soli
 	thirdStepContainer.classList.remove('hidden'); // atver trešo soli
 	console.log('computer will use min-max algorithm')
 });
 
 document.getElementById("chooseAlfaBeta").addEventListener("click", () => {
-	game.selectAlgorithm("alfabeta");
+	game.setAlgorithm("alfabeta");
 	secondStepContainer.classList.add('hidden'); // aizver pirmo soli
 	thirdStepContainer.classList.remove('hidden'); // atver trešo soli
 	console.log('computer will use alfa-beta algorithm')
@@ -53,9 +53,9 @@ numbers.forEach((number) => {
 	button.classList.add('py-10', 'rounded-lg', 'bg-sky-500', 'hover:bg-sky-600', 'duration-200', 'cursor-pointer')
 
 	button.addEventListener('click', () => {
-		game.selectStartingNumber(number);
-		thirdStepContainer.classList.add('hidden'); // atver trešo soli
-		gameContainer.classList.remove('hidden');
+		game.setStartingNumber(number);
+		thirdStepContainer.classList.add('hidden'); // aizver trešo soli
+		gameContainer.classList.remove('hidden'); // atver spēles konteineru
 		console.log(`the starting number will be ${number}`);
 	});
 

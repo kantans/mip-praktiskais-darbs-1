@@ -3,19 +3,20 @@ import {range} from "../config.js";
 export class Game {
 	constructor() {
 		this.starter = '';
+		this.startingPlayer = '';
 		this.algorithm = '';
 		this.startingNumber = '';
 	}
 
-	selectStarter(option) {
-		this.starter = option;
+	setStartingPlayer(player) {
+		this.startingPlayer = player;
 	}
 
-	selectAlgorithm(option) {
-		this.algorithm = option;
+	setAlgorithm(algorithm) {
+		this.algorithm = algorithm;
 	}
 
-	selectStartingNumber(number) {
+	setStartingNumber(number) {
 		this.startingNumber = number;
 	}
 
