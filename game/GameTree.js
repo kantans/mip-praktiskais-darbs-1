@@ -10,7 +10,7 @@ export class GameTree {
 
 		if (number <= 10) return node; // beigu nosacījums
 
-		if(number % 2 === 0) {
+		if (number % 2 === 0) {
 			const nextTurn = turn === 'human' ? 'computer' : 'human';
 			const h = turn === 'human' ? humanScore : humanScore + 2; // ja dala cilvēks, datoram +2
 			const c = turn === 'computer' ? computerScore : computerScore + 2; // ja dala dators, cilvēkam +2
@@ -20,7 +20,7 @@ export class GameTree {
 			node.children.push(child);
 		}
 
-		if(number % 3 === 0) {
+		if (number % 3 === 0) {
 			const nextTurn = turn === 'human' ? 'computer' : 'human';
 			const h = turn === 'human' ? humanScore + 3 : humanScore; // ja dala cilvēks, cilvēkam + 3
 			const c = turn === 'computer' ? computerScore + 3 : computerScore; // ja dala dators, datoram +3

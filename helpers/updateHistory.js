@@ -1,9 +1,9 @@
 export function updateHistory(element, history) {
-	if(history.length <= 0) return;
+	if (history.length <= 0) return;
 
 	element.innerHTML = '';
 
 	history.map((item, index) => {
-		element.innerHTML += `<li>${history.length - index}. ${item}</li>`
+		element.innerHTML += `<div>${history.length - index}</div> ${item}`
 	});
 }
