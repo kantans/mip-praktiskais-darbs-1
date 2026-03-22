@@ -31,30 +31,41 @@ export class Game extends GameSetup {
 		}
 
 		this.current = next;
-		this.history.unshift(`Cilvēks dala ar ${move}. Rezultāts: Cilvēks: ${this.current.humanScore}, Dators: ${this.current.computerScore}. (skaitlis: ${this.current.number})`);
+		this.history.unshift(`<div>Cilvēks dala ar ${move}</div><div>${this.current.computerScore}</div><div>${this.current.humanScore}</div><div>${this.current.number}</div>`);
 		return true;
 	}
 
 	computerMove() {
-		if(this.algorithm === 'minmax') {
-			this.current = this.#getBestMove(this.current);
-			this.history.unshift(`Dators dala ar ${this.current.move}. Rezultāts: Cilvēks: ${this.current.humanScore}, Dators: ${this.current.computerScore}. (skaitlis: ${this.current.number})`);
+		if (this.algorithm === 'minmax') {
+			this.current = this.#getBestMove(this.current, this.algorithm);
+			this.history.unshift(`<div>Dators dala ar ${this.current.move}</div><div>${this.current.computerScore}</div><div>${this.current.humanScore}</div><div>${this.current.number}</div>`);
 		}
 
-		if(this.algorithm === 'alfabeta') {
-
+		if (this.algorithm === 'alfabeta') {
+			this.current = this.#getBestMove(this.current, this.algorithm);
+			this.history.unshift(`<div>Dators dala ar ${this.current.move}</div><div>${this.current.computerScore}</div><div>${this.current.humanScore}</div><div>${this.current.number}</div>`);
 		}
 	}
 
-	#getBestMove(node) {
+	#getBestMove(node, algorithm) {
 		let bestScore = -Infinity;
 		let bestChild = null;
 
 		for (const child of node.children) {
-			const score = this.#minimax(child);
+			let score;
+			if (algorithm === 'alfabeta') {
+				score = this.#alphabeta(child, -Infinity, Infinity, false);
+			} else {
+				score = this.#minimax(child);
+			}
+
 			if (score > bestScore) {
 				bestScore = score;
 				bestChild = child;
+			}
+
+			if (algorithm === 'alfabeta') {
+				bestScore = Math.max(bestScore, score);
 			}
 		}
 
@@ -73,11 +84,40 @@ export class Game extends GameSetup {
 		}
 	}
 
+	#alphabeta(node, alpha, beta, isMaxing) {
+		if (node.children.length === 0) {
+			return node.computerScore - node.humanScore;
+		}
+
+		if (isMaxing) {
+			let maxScore = -Infinity;
+			for (const child of node.children) {
+				const score = this.#alphabeta(child, alpha, beta, false);
+				maxScore = Math.max(maxScore, score);
+				alpha = Math.max(alpha, score);
+				if (beta <= alpha) break;
+			}
+			return maxScore;
+		} else {
+			let minScore = Infinity;
+			for (const child of node.children) {
+				const score = this.#alphabeta(child, alpha, beta, true);
+				minScore = Math.min(minScore, score);
+				beta = Math.min(beta, score);
+				if (beta <= alpha) break;
+			}
+			return minScore;
+		}
+	}
 
 	getWinner() {
 		const { humanScore, computerScore } = this.current;
-		if (computerScore > humanScore)    return 'AI uzvar!';
-		if (humanScore > computerScore)    return 'Cilvēks uzvar!';
+		if (computerScore > humanScore) {
+			return 'Dators uzvar!';
+		}
+		if (humanScore > computerScore) {
+			return 'Cilvēks uzvar!';
+		}
 		return 'Neizšķirts!';
 	}
 

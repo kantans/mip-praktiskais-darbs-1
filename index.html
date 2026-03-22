@@ -82,7 +82,7 @@
         </div>
 
         <!--   pogu konteiners    -->
-        <div class="grid grid-cols-2 gap-5 w-full text-white">
+        <div id="buttons" class="grid grid-cols-2 gap-5 w-full text-white">
             <button id="divideByTwo" class="flex flex-col items-center py-15 rounded-lg bg-sky-500 hover:bg-sky-600 duration-200 cursor-pointer text-2xl">
                 <span class="uppercase font-semibold">Dalīt ar 2</span>
                 <span class="text-sm text-neutral-200 italic">+2 punkti datoram</span>
@@ -93,11 +93,26 @@
             </button>
         </div>
 
+        <!--  rezultātu konteiners  -->
+        <div id="resultContainer" class="hidden flex flex-col gap-5 w-full justify-center items-center py-10">
+            <p class="text-center text-6xl font-bold" id="result"></p>
+            <button onclick="window.location.reload()" class="bg-sky-500 cursor-pointer hover:bg-sky-600 duration-200 px-20 py-5 rounded-lg text-white">Jauna spēle</button>
+        </div>
+
         <!--   gājienu saraksts    -->
-        <div class="">
-            <h2>Iepriekšējo gājienu saraksts</h2>
-            <ol id="history">
-            </ol>
+        <div class="w-full flex flex-col justify-center w-[500px]">
+            <h2 class="text-2xl pb-2 font-bold">Iepriekšējo gājienu saraksts</h2>
+            <div class="flex flex-col border border-neutral-300 rounded-lg overflow-hidden">
+                <div class="grid grid-cols-5 bg-neutral-100 text-semibold p-2 text-center">
+                    <div>Gājiena Nr.</div>
+                    <div>Gājiens</div>
+                    <div>Datora punkti</div>
+                    <div>Tavi punkti</div>
+                    <div>Skaitlis</div>
+                </div>
+                <div id="history" class="bg-white p-1 grid grid-cols-5 text-center">
+                </div>
+            </div>
         </div>
     </div>
 </main>

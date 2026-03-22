@@ -9,10 +9,13 @@ const firstStepContainer = document.getElementById('firstStep');
 const secondStepContainer = document.getElementById('secondStep');
 const thirdStepContainer = document.getElementById('thirdStep');
 const gameContainer = document.getElementById('gameContainer');
+const resultContainer = document.getElementById('resultContainer');
 
 const historyContainer = document.getElementById('history');
 const humanPoints = document.getElementById('humanPoints');
 const computerPoints = document.getElementById('computerPoints');
+const result = document.getElementById('result');
+const buttons = document.getElementById('buttons');
 
 
 // 1. solis, izvēlēties kas sāk spēli
@@ -82,11 +85,16 @@ function handleMove(divisor) {
 	if (!game.humanMove(divisor)) return;
 
 	updateState();
-	if (game.isOver()) { endGame(); return; }
+	if (game.isOver()) {
+		endGame();
+		return;
+	}
 
 	game.computerMove();
 	updateState();
-	if (game.isOver()) { endGame(); }
+	if (game.isOver()) {
+		endGame();
+	}
 }
 
 function updateState() {
@@ -97,10 +105,11 @@ function updateState() {
 }
 
 function endGame() {
-	console.log(game.getWinner());
-	// šeit vari paslēpt pogas, parādīt uzvarētāju utt.
 	document.getElementById('divideByTwo').disabled = true;
 	document.getElementById('divideByThree').disabled = true;
+	resultContainer.classList.remove('hidden');
+	buttons.classList.add('hidden');
+	result.innerHTML = game.getWinner();
 }
 
 
