@@ -1,7 +1,9 @@
 # Praktiskais darbs 1 (K33)
 Mūsu komandas uzdevums bija izveidot spēli ar grafisko saskarni. Šajā dokumentā Jūs varēsiet atrast visas detaļas un tehniskās nianses par šo projektu, kā to konfigurēt un palaist lokāli.
 
-***Šī projekta izstrādē MI rīki VISPĀR netika pielietoti, ar galveno domu, lai labāk izprastu kas ir uzrakstīts un patiesi saprast koda būtību. Neskaidrību gadījumā versos JS dokumentācijās vai StackOverflow resursos (https://www.w3schools.com/js/ , https://developer.mozilla.org/en-US/docs/Web/JavaScript)***
+***Šī projekta koda izstrādē MI rīki VISPĀR netika pielietoti, ar galveno domu, lai labāk izprastu kas ir uzrakstīts un patiesi saprast koda būtību. Neskaidrību gadījumā versos JS dokumentācijās vai StackOverflow resursos (https://www.w3schools.com/js/ , https://developer.mozilla.org/en-US/docs/Web/JavaScript)***
+
+Galvenais avots un iedvesma abiem algoritmiem bija šajā resursā: https://www.geeksforgeeks.org/dsa/minimax-algorithm-in-game-theory-set-4-alpha-beta-pruning/
 
 ## Spēles sākuma nosacījumi
 ![Sākuma nosacījumi](assets/sakuma-nosacijumi.png)
