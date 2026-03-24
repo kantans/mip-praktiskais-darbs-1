@@ -1,5 +1,11 @@
 import {range} from "../config.js";
 
+/*
+	šī ir spēles virsklase, kas satur spēles izveidošanas soļus,
+	kā arī saglabā tos, lai pēctam bērna klase "Game" varētu tos izmantot kodā.
+
+	šo primāri izveidoju, jo negribējās miksēt setteru metodes pašā spēles loģikā.
+ */
 export class GameSetup {
 	constructor() {
 		this.startingPlayer = '';
