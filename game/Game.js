@@ -24,7 +24,6 @@ export class Game extends GameSetup {
 		const m = move === 2 ? '/2' : '/3';
 		const next = this.current.children.find(c => c.move === m);
 
-		// todo: šeit jāuztaisa funkcionalitāte, lai bloķētu pogu, lai nav nemaz iespēja izvēlēties nederīgu gājienu
 		if (!next) {
 			console.log('Nederīgs gājiens!');
 			return false;
@@ -36,40 +35,22 @@ export class Game extends GameSetup {
 	}
 
 	computerMove() {
-		if (this.algorithm === 'minmax') {
-			this.current = this.#getBestMove(this.current, this.algorithm);
-			this.history.unshift(`<div>Dators dala ar ${this.current.move}</div><div>${this.current.computerScore}</div><div>${this.current.humanScore}</div><div>${this.current.number}</div>`);
-		}
-
-		if (this.algorithm === 'alfabeta') {
-			this.current = this.#getBestMove(this.current, this.algorithm);
-			this.history.unshift(`<div>Dators dala ar ${this.current.move}</div><div>${this.current.computerScore}</div><div>${this.current.humanScore}</div><div>${this.current.number}</div>`);
-		}
-	}
-
-	#getBestMove(node, algorithm) {
 		let bestScore = -Infinity;
-		let bestChild = null;
+		let bestMove = null;
 
-		for (const child of node.children) {
-			let score;
-			if (algorithm === 'alfabeta') {
-				score = this.#alphabeta(child, -Infinity, Infinity, false);
-			} else {
-				score = this.#minimax(child);
-			}
+		for (const child of this.current.children) {
+			const score = this.algorithm === 'alfabeta'
+				? this.#alphabeta(child, -Infinity, Infinity, false)
+				: this.#minimax(child);
 
 			if (score > bestScore) {
 				bestScore = score;
-				bestChild = child;
-			}
-
-			if (algorithm === 'alfabeta') {
-				bestScore = Math.max(bestScore, score);
+				bestMove = child;
 			}
 		}
 
-		return bestChild;
+		this.current = bestMove;
+		this.history.unshift(`<div>Dators dala ar ${this.current.move}</div><div>${this.current.computerScore}</div><div>${this.current.humanScore}</div><div>${this.current.number}</div>`);
 	}
 
 	#minimax(node) {
